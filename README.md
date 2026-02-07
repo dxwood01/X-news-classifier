@@ -6,7 +6,13 @@
 
 Automated fake news detection for X (Twitter) using NLP and Deep Learning. Achieves **97% accuracy** with a production-ready REST API.
 
----
+## Problem Statement
+
+Misinformation spreads rapidly on social media platforms like X (formerly Twitter). Identifying fake news automatically is crucial to prevent the propagation of false information.
+
+## Objective
+
+Build an automated system that classifies tweets as **Real** or **Fake** using Natural Language Processing (NLP) and Deep Learning, with a production-ready API for real-time predictions.
 
 ## Overview
 
@@ -17,9 +23,7 @@ This project classifies tweets as **Real** or **Fake** using:
 - Artificial Neural Network (256→128→1 architecture)
 - FastAPI for real-time predictions
 
-**Performance:** 97.23% accuracy, 0.97 F1-score on 134K tweets
-
----
+**Performance:** 97.58% accuracy, 0.97 F1-score on 134K tweets
 
 ## Dataset
 
@@ -28,7 +32,6 @@ This project classifies tweets as **Real** or **Fake** using:
 - 134K tweets (balanced)
 - Download and place `Truth_Seeker_Model_Dataset.csv` in `data/` folder
 
----
 
 ## Pre-trained Models Included
 
@@ -38,7 +41,11 @@ This repository includes **pre-trained models** so you can use the API immediate
 - `models/tfidf_vectorizer.pkl` - Fitted TF-IDF vectorizer
 - `models/svd_model.pkl` - Fitted SVD transformer
 
-### Quick Start
+
+## Installation & Usage
+
+### Option 1: Use Pre-trained Models (Recommended)
+
 
 ```bash
 # Clone and install
@@ -55,13 +62,6 @@ uvicorn src.api:app --reload
 
 Visit `http://localhost:8000/docs` and start predicting!
 
----
-
-## Installation & Usage
-
-### Option 1: Use Pre-trained Models (Recommended)
-
-Follow the Quick Start above - models are already included!
 
 ### Option 2: Train from Scratch
 
@@ -77,7 +77,6 @@ If you want to retrain the models:
 
 This creates: `models/final_ann_model.keras`, `models/tfidf_vectorizer.pkl`, `models/svd_model.pkl`
 
----
 
 ## Making Predictions
 
@@ -137,7 +136,7 @@ pred = model.predict(vec, verbose=0)[0][0]
 print("Real" if pred > 0.5 else "Fake", f"({pred:.2%})")
 ```
 
----
+
 
 ## Project Structure
 
@@ -161,7 +160,6 @@ X-news-classifier/
 └── requirements.txt
 ```
 
----
 
 ## Results
 
@@ -169,11 +167,11 @@ X-news-classifier/
 
 | Model                 | Test Accuracy | Test F1-Score |
 | --------------------- | ------------- | ------------- |
-| Logistic Regression   | 96.24%        | 0.9631        |
-| Linear SVC            | 96.89%        | 0.9695        |
-| Passive Aggressive    | 95.87%        | 0.9594        |
-| SGD Classifier        | 96.15%        | 0.9621        |
-| **ANN (Final Model)** | **97.23%**    | **0.9738**    |
+| Logistic Regression   | 92.49%        | 0.9277        |
+| Linear SVC            | 92.54%        | 0.9282        |
+| Passive Aggressive    | 91.99%        | 0.9242        |
+| SGD Classifier        | 92.29%        | 0.9267        |
+| **ANN (Final Model)** | **97.58%**    | **0.9765**    |
 
 
 ### Example Predictions
@@ -184,34 +182,24 @@ X-news-classifier/
 | "The President announced new policy changes"    | Real       | Low        | Needs more context |
 | "Research published in Nature journal shows..." | Fake       | High       | Short phrase       |
 
----
 
 ## Limitations
 
+- **High accuracy paradox**: The 97% test accuracy, while impressive, may partially reflect strong lexical patterns specific to this dataset rather than universal fake news indicators. Real-world performance on diverse, evolving misinformation may be lower.
 - **Context matters**: Short phrases may lack sufficient context for accurate classification
 - **Dataset-specific**: Trained on 2023 Twitter data with specific linguistic patterns
 - **Educational project**: Demonstrates ML skills; not production-ready without further validation
 - **Confidence levels**: Use the `confidence_level` field to assess prediction reliability
 - **Language**: English only
 
----
 
-## Future Work
 
-- [ ] Implement transformer models (BERT, RoBERTa)
-- [ ] Add ensemble methods
-- [ ] Deploy to cloud (AWS, GCP, Heroku)
-- [ ] Create web interface
-- [ ] Multilingual support
-- [ ] Add explainability (LIME, SHAP)
-
----
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
----
+
 
 ## Author
 
@@ -220,13 +208,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - GitHub: [@dxwood01](https://github.com/dxwood01)
 - LinkedIn: [Sulman Dawood](https://linkedin.com/in/sulman-dawood-552b5234a)
 
----
+
 
 ## Acknowledgments
 
 - **Dataset**: Truth Seeker Twitter Dataset 2023 from [Kaggle](https://www.kaggle.com/datasets/paulinepeps/truth-seeker-dataset-2023-truthseeker2023)
 
----
+
 
 **If you find this project useful, please consider giving it a star ⭐**
 
