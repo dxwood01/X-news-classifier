@@ -23,7 +23,7 @@ This project classifies tweets as **Real** or **Fake** using:
 
 ## Dataset
 
-**Source:** [Truth Seeker Twitter Dataset 2023](https://www.kaggle.com/datasets/truthseeker/fake-news-detection)
+**Source:** [Truth Seeker Twitter Dataset 2023](https://www.kaggle.com/datasets/paulinepeps/truth-seeker-dataset-2023-truthseeker2023)
 
 - 134K tweets (balanced)
 - Download and place `Truth_Seeker_Model_Dataset.csv` in `data/` folder
@@ -38,7 +38,7 @@ This repository includes **pre-trained models** so you can use the API immediate
 - `models/tfidf_vectorizer.pkl` - Fitted TF-IDF vectorizer
 - `models/svd_model.pkl` - Fitted SVD transformer
 
-### Quick Start (No Training Required)
+### Quick Start
 
 ```bash
 # Clone and install
@@ -67,7 +67,7 @@ Follow the Quick Start above - models are already included!
 
 If you want to retrain the models:
 
-1. **Download the dataset** from [Kaggle](https://www.kaggle.com/datasets/truthseeker/fake-news-detection)
+1. **Download the dataset** from [Kaggle](https://www.kaggle.com/datasets/paulinepeps/truth-seeker-dataset-2023-truthseeker2023)
 2. **Place** `Truth_Seeker_Model_Dataset.csv` in `data/` folder
 3. **Train:**
 
@@ -145,14 +145,13 @@ print("Real" if pred > 0.5 else "Fake", f"({pred:.2%})")
 X-news-classifier/
 ├── data/
 │   └── .gitkeep                       # Dataset goes here (download separately)
-├── models/                             # Pre-trained models
+├── models/                            # Pre-trained models
 │   ├── final_ann_model.keras          # Trained ANN
 │   ├── tfidf_vectorizer.pkl           # Fitted TF-IDF vectorizer
 │   └── svd_model.pkl                  # Fitted SVD transformer
 ├── notebooks/
 │   └── X_news_classifier.ipynb        # Full analysis & visualization
 ├── src/
-│   ├── __init__.py
 │   ├── api.py                         # FastAPI endpoint
 │   ├── preprocessing.py               # Text cleaning functions
 │   └── train_model.py                 # Model training script
@@ -176,24 +175,14 @@ X-news-classifier/
 | SGD Classifier        | 96.15%        | 0.9621        |
 | **ANN (Final Model)** | **97.23%**    | **0.9738**    |
 
-### Classification Report (ANN)
-
-```
-              precision    recall  f1-score   support
-
-        Fake       0.97      0.98      0.97     20145
-        Real       0.98      0.97      0.97     20115
-
-    accuracy                           0.97     40260
-```
 
 ### Example Predictions
 
 | Tweet                                           | Prediction | Confidence | Notes              |
 | ----------------------------------------------- | ---------- | ---------- | ------------------ |
-| "CLICK HERE NOW!!! WIN $1000000!!!"             | Fake       | High ✓     | Clear clickbait    |
-| "The President announced new policy changes"    | Real       | Low ⚠️     | Needs more context |
-| "Research published in Nature journal shows..." | Fake       | High ⚠️    | Short phrase       |
+| "CLICK HERE NOW!!! WIN $1000000!!!"             | Fake       | High       | Clear clickbait    |
+| "The President announced new policy changes"    | Real       | Low        | Needs more context |
+| "Research published in Nature journal shows..." | Fake       | High       | Short phrase       |
 
 ---
 
@@ -218,28 +207,6 @@ X-news-classifier/
 
 ---
 
-## Dependencies
-
-```txt
-pandas==1.5.3
-numpy==1.23.5
-scikit-learn==1.2.2
-tensorflow==2.12.0
-nltk==3.8.1
-fastapi==0.104.1
-uvicorn==0.24.0
-pydantic==2.5.0
-joblib==1.3.2
-requests==2.31.0
-jupyter==1.0.0
-matplotlib==3.7.1
-seaborn==0.12.2
-```
-
-Install all: `pip install -r requirements.txt`
-
----
-
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
@@ -255,13 +222,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
-- **Dataset**: Truth Seeker Twitter Dataset 2023 from Kaggle
-- **Frameworks**: TensorFlow, scikit-learn, FastAPI, NLTK
+- **Dataset**: Truth Seeker Twitter Dataset 2023 from [Kaggle](https://www.kaggle.com/datasets/paulinepeps/truth-seeker-dataset-2023-truthseeker2023)
 
 ---
 
-⭐ **If you find this project useful, please consider giving it a star!**
+**If you find this project useful, please consider giving it a star ⭐**
 
-🐛 **Found a bug or have suggestions?** [Open an issue](https://github.com/dxwood01/X-news-classifier/issues)
+**Found a bug or have suggestions?** [Open an issue](https://github.com/dxwood01/X-news-classifier/issues)
